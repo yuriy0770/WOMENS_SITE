@@ -1,0 +1,32 @@
+﻿[
+{
+  "model": "women.category",
+  "pk": 1,
+  "fields": {
+    "name": "└ъЄЁшё√",
+    "title": "┬хышъшх ръЄЁшё√ ьшЁр",
+    "image_cat": "category/c004f785bdba11f0a9b90ae3e91b620a_1_jv1MhJS.jpg",
+    "slug": "aktrisy"
+  }
+},
+{
+  "model": "women.category",
+  "pk": 2,
+  "fields": {
+    "name": "╧хтшЎ√",
+    "title": "┬хышъшх яхтшЎ√ ьшЁр",
+    "image_cat": "category/7e98a9dabdb811f0b0d3567ecdaf0a75_1_WLiTppd.jpg",
+    "slug": "pevicy"
+  }
+},
+{
+  "model": "women.category",
+  "pk": 3,
+  "fields": {
+    "name": "╤яюЁЄёьхэъш",
+    "title": "┬хышъшх ёяюЁЄёьхэъш ьшЁр",
+    "image_cat": "category/efbb5b17bdba11f093304a96454a5add_1_5iwRMdQ.jpg",
+    "slug": "sportsmenki"
+  }
+}
+]

@@ -1,0 +1,129 @@
+{% extends 'women/base.html' %}
+
+{% block content %}
+<main>
+    <!-- Герой-секция -->
+    <section class="py-5 text-center container-fluid bg-primary text-white">
+        <div class="row py-lg-5">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <h1 class="fw-bold display-4 mb-4">Женский альбом</h1>
+                <p class="lead mb-4">Знакомьтесь с удивительными женщинами из разных категорий. Находите вдохновение в их историях.</p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <button class="btn btn-light btn-lg px-4 gap-3" type="button" data-bs-toggle="offcanvas"
+                            data-bs-target="#offcanvasScrolling">
+                        📁 Все категории
+                    </button>
+                    <a href="{% url 'women:all_humans' %}" class="btn btn-outline-light btn-lg px-4">👩 Все женщины</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Избранные женщины -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="fw-bold">🌟 Избранные женщины</h2>
+                    <p class="text-muted">Самые популярные профили</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                {% for human in featured_humans %}
+                <div class="col-md-4 col-lg-2">
+                    <div class="card h-100 shadow-sm border-0 text-center">
+                        <a href="{{ human.get_absolute_url }}">
+                            {% if human.image %}
+                            <img src="{{ human.image.url }}" class="card-img-top rounded-circle mx-auto mt-3"
+                                 alt="{{ human.name_h }}" style="width: 100px; height: 100px; object-fit: cover;">
+                            {% else %}
+                            <div class="card-img-top bg-secondary rounded-circle mx-auto mt-3 d-flex align-items-center justify-content-center"
+                                 style="width: 100px; height: 100px;">
+                                <span class="text-white">👩</span>
+                            </div>
+                            {% endif %}
+                        </a>
+                        <div class="card-body">
+                            <h6 class="card-title fw-bold">{{ human.name_h }}</h6>
+                            <p class="card-text small text-muted">{{ human.cat.name }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Популярные категории -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">
+                    <h2 class="fw-bold">🎯 Популярные категории</h2>
+                    <p class="text-muted">Исследуйте женщин по категориям</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                {% for cat in category|slice:":3" %}
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm border-0">
+                        <a href="{{ cat.get_absolute_url }}">
+                            {% if cat.image_cat %}
+                            <img src="{{ cat.image_cat.url }}" class="card-img-top" alt="{{ cat.name }}"
+                                 style="height: 200px; object-fit: cover;">
+                            {% else %}
+                            <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center"
+                                 style="height: 200px;">
+                                <span class="text-white">📁 {{ cat.name }}</span>
+                            </div>
+                            {% endif %}
+                        </a>
+                        <div class="card-body text-center">
+                            <h5 class="card-title fw-bold">{{ cat.name }}</h5>
+                            {% if cat.title %}<p class="card-text text-muted">{{ cat.title }}</p>{% endif %}
+                            <a href="{{ cat.get_absolute_url }}" class="btn btn-primary mt-2">
+                                Смотреть ({{ cat.humans.count }})
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Оффканвас с категориями -->
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+     id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+    <div class="offcanvas-header bg-primary text-white">
+        <h5 class="offcanvas-title fw-bold" id="offcanvasScrollingLabel">🎯 Все категории</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        {% for cat in category %}
+        <div class="category-item text-center mb-4 p-3 border rounded shadow-sm">
+            <a href="{{ cat.get_absolute_url }}" class="text-decoration-none">
+                {% if cat.image_cat %}
+                <img src="{{ cat.image_cat.url }}" alt="{{ cat.name }}" width="200" height="150"
+                     class="img-fluid rounded mx-auto d-block mb-2">
+                {% else %}
+                <div class="bg-light d-flex align-items-center justify-content-center mb-2 rounded"
+                     style="width: 200px; height: 150px; margin: 0 auto;">
+                    <span class="text-muted">📁 {{ cat.name }}</span>
+                </div>
+                {% endif %}
+            </a>
+
+            <h6 class="fw-bold mb-1">{{ cat.name }}</h6>
+            {% if cat.title %}<p class="text-muted small">{{ cat.title }}</p>{% endif %}
+
+            <a href="{{ cat.get_absolute_url }}" class="btn btn-primary btn-sm mt-2">
+                Смотреть ({{ cat.humans.count }})
+            </a>
+        </div>
+        {% if not forloop.last %}<hr>{% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

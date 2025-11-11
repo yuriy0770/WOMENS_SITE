@@ -1,0 +1,46 @@
+{% extends 'women/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12 text-center mb-4">
+            {% if category.image_cat %}
+            <img src="{{ category.image_cat.url }}" alt="{{ category.name }}"
+                 class="rounded-circle mb-3" width="150" height="150" style="object-fit: cover;">
+            {% endif %}
+            <h1 class="fw-bold">{{ category.name }}</h1>
+            {% if category.title %}<p class="lead text-muted">{{ category.title }}</p>{% endif %}
+            <p class="text-muted">Найдено женщин: {{ humans.count }}</p>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        {% for human in humans %}
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0">
+                <a href="{{ human.get_absolute_url }}">
+                    {% if human.image %}
+                    <img src="{{ human.image.url }}" class="card-img-top" alt="{{ human.name_h }}"
+                         style="height: 250px; object-fit: cover;">
+                    {% endif %}
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">{{ human.name_h }}</h5>
+                    <p class="card-text">{{ human.descriptions|truncatewords:20 }}</p>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <a href="{{ human.get_absolute_url }}" class="btn btn-primary w-100">Подробнее</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <div class="alert alert-info">
+                <h4>В этой категории пока нет женщин</h4>
+                <p>Будьте первым, кто добавит профиль!</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

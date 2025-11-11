@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru" data-bs-theme="dark">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Women Site - Сообщество удивительных женщин{% endblock %}</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        .navbar-brand {
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+            border-radius: 20px;
+            margin: 0 2px;
+        }
+        .nav-link:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .nav-link.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+        }
+        .footer-links a {
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: #fff !important;
+        }
+        .back-to-top {
+            transition: all 0.3s ease;
+        }
+        .back-to-top:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+<header class="sticky-top bg-dark shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="{% url 'women:index' %}">
+                <i class="bi bi-flower1 me-2"></i>
+                WomenSite
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}"
+                           href="{% url 'women:index' %}">
+                            <i class="bi bi-house me-1"></i>Главная
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'all_humans' %}active{% endif %}"
+                           href="{% url 'women:all_humans' %}">
+                            <i class="bi bi-people me-1"></i>Все женщины
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-grid me-1"></i>Категории
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% for category in categories|slice:":5" %}
+                            <li>
+                                <a class="dropdown-item" href="{{ category.get_absolute_url }}">
+                                    <i class="bi bi-tag me-1"></i>{{ category.name }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                            {% if categories.count > 5 %}
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <a class="dropdown-item text-primary" href="{% url 'women:index' %}">
+                                    <i class="bi bi-arrow-right me-1"></i>Все категории
+                                </a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'create' %}active{% endif %}"
+                           href="{% url 'women:create' %}">
+                            <i class="bi bi-plus-circle me-1"></i>Добавить
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}"
+                           href="{% url 'women:about' %}">
+                            <i class="bi bi-info-circle me-1"></i>О проекте
+                        </a>
+                    </li>
+
+                </ul>
+
+                <div class="d-flex align-items-center">
+                    <div class="input-group input-group-sm me-2" style="width: 200px;">
+                        <input type="text" class="form-control" placeholder="Поиск...">
+                        <button class="btn btn-outline-light" type="button">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                    <div class="dropdown">
+                        {% if user.is_authenticated %}
+                        <button class="btn btn-outline-light btn-sm dropdown-toggle" type="button"
+                                data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle me-1"></i>{{ user.username }}
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'users:profile' %}">
+                                <i class="bi bi-person me-1"></i>Профиль
+                            </a></li>
+                            <li><a class="dropdown-item" href="{% url 'women:create' %}">
+                                <i class="bi bi-plus-circle me-1"></i>Добавить женщину
+                            </a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="{% url 'users:logout' %}">
+                                <i class="bi bi-box-arrow-right me-1"></i>Выйти
+                            </a></li>
+                        </ul>
+                        {% else %}
+                        <button class="btn btn-outline-light btn-sm dropdown-toggle" type="button"
+                                data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle me-1"></i>Аккаунт
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'users:login' %}">
+                                <i class="bi bi-box-arrow-in-right me-1"></i>Войти
+                            </a></li>
+                            <li><a class="dropdown-item" href="{% url 'users:register' %}">
+                                <i class="bi bi-person-plus me-1"></i>Регистрация
+                            </a></li>
+                        </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="flex-grow-1">
+    {% block content %}
+    {% endblock %}
+</main>
+
+<footer class="bg-dark text-light mt-auto">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h5 class="fw-bold mb-3">
+                    <i class="bi bi-flower1 me-2"></i>WomenSite
+                </h5>
+                <p class="text-muted">
+                    Сообщество удивительных женщин, которые вдохновляют своими достижениями,
+                    талантами и историями успеха.
+                </p>
+                <div class="social-links">
+                    <a href="#" class="text-muted me-3"><i class="bi bi-telegram fs-5"></i></a>
+                    <a href="#" class="text-muted me-3"><i class="bi bi-instagram fs-5"></i></a>
+                    <a href="#" class="text-muted me-3"><i class="bi bi-facebook fs-5"></i></a>
+                    <a href="#" class="text-muted"><i class="bi bi-youtube fs-5"></i></a>
+                </div>
+            </div>
+
+            <div class="col-lg-2 col-md-6 mb-4">
+                <h6 class="fw-bold mb-3">Навигация</h6>
+                <ul class="list-unstyled footer-links">
+                    <li class="mb-2"><a href="{% url 'women:index' %}" class="text-muted">Главная</a></li>
+                    <li class="mb-2"><a href="{% url 'women:all_humans' %}" class="text-muted">Все женщины</a></li>
+                    <li class="mb-2"><a href="#categories" class="text-muted">Категории</a></li>
+                    <li class="mb-2"><a href="#about" class="text-muted">О проекте</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h6 class="fw-bold mb-3">Контакты</h6>
+                <ul class="list-unstyled text-muted">
+                    <li class="mb-2">
+                        <i class="bi bi-envelope me-2"></i>info@womensite.com
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-telephone me-2"></i>+7 (999) 123-45-67
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-geo-alt me-2"></i>Москва, Россия
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <p class="text-muted mb-0">
+                    &copy; 2025 WomenSite. Все права защищены.
+                </p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <a href="#" class="back-to-top text-muted text-decoration-none">
+                    <i class="bi bi-arrow-up-circle me-1"></i>Наверх
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script>
+    // Плавная прокрутка к верху
+    document.querySelector('.back-to-top').addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Подсветка активной ссылки
+    document.addEventListener('DOMContentLoaded', function() {
+        const currentUrl = window.location.pathname;
+        document.querySelectorAll('.nav-link').forEach(link => {
+            if (link.getAttribute('href') === currentUrl) {
+                link.classList.add('active');
+            }
+        });
+    });
+</script>
+</body>
+</html>

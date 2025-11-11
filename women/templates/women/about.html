@@ -1,0 +1,327 @@
+{% extends 'women/base.html' %}
+
+{% block title %}О проекте - WomenSite{% endblock %}
+
+{% block content %}
+<!-- Герой секция -->
+<section class="hero-section bg-primary text-white py-5">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 fw-bold mb-4">О нашем проекте</h1>
+                <p class="lead mb-4">
+                    WomenSite - это платформа, посвященная выдающимся женщинам,
+                    которые вдохновляют своими достижениями, талантами и историями успеха.
+                </p>
+                <div class="d-flex gap-3">
+                    <span class="badge bg-light text-primary fs-6">👩 Вдохновение</span>
+                    <span class="badge bg-light text-primary fs-6">🌟 Успех</span>
+                    <span class="badge bg-light text-primary fs-6">💪 Сила</span>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <div class="hero-image">
+                    <i class="bi bi-people-fill display-1 text-warning"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Миссия -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-8">
+                <h2 class="fw-bold mb-4">Наша миссия</h2>
+                <p class="lead text-muted">
+                    Мы создаем пространство, где каждая женщина может найти вдохновение,
+                    узнать о достижениях других и поделиться своей уникальной историей.
+                </p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 text-center">
+                    <div class="card-body p-4">
+                        <div class="icon-wrapper bg-primary rounded-circle mx-auto mb-3" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
+                            <i class="bi bi-heart-fill text-white fs-3"></i>
+                        </div>
+                        <h5 class="fw-bold">Вдохновение</h5>
+                        <p class="text-muted">
+                            Знакомьтесь с историями успеха женщин из разных сфер деятельности
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 text-center">
+                    <div class="card-body p-4">
+                        <div class="icon-wrapper bg-success rounded-circle mx-auto mb-3" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
+                            <i class="bi bi-share-fill text-white fs-3"></i>
+                        </div>
+                        <h5 class="fw-bold">Сообщество</h5>
+                        <p class="text-muted">
+                            Присоединяйтесь к сообществу единомышленников и делитесь опытом
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 text-center">
+                    <div class="card-body p-4">
+                        <div class="icon-wrapper bg-warning rounded-circle mx-auto mb-3" style="width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">
+                            <i class="bi bi-lightbulb-fill text-white fs-3"></i>
+                        </div>
+                        <h5 class="fw-bold">Развитие</h5>
+                        <p class="text-muted">
+                            Находите новые идеи и возможности для личного и профессионального роста
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Статистика -->
+<section class="py-5 bg-dark text-white">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3 mb-4">
+                <div class="stat-item">
+                    <h3 class="fw-bold display-4 text-warning" id="womenCount">0</h3>
+                    <p class="text-muted">Уникальных женщин</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="stat-item">
+                    <h3 class="fw-bold display-4 text-warning" id="categoriesCount">0</h3>
+                    <p class="text-muted">Категорий</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="stat-item">
+                    <h3 class="fw-bold display-4 text-warning" id="storiesCount">0</h3>
+                    <p class="text-muted">Историй успеха</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="stat-item">
+                    <h3 class="fw-bold display-4 text-warning" id="visitorsCount">0</h3>
+                    <p class="text-muted">Посетителей в месяц</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Команда -->
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-8">
+                <h2 class="fw-bold mb-4">Наша философия</h2>
+                <p class="lead text-muted">
+                    Мы верим, что каждая женщина достойна быть услышанной,
+                    а ее достижения - признанными и вдохновляющими для других.
+                </p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-start">
+                            <i class="bi bi-eye-fill text-primary fs-2 me-3"></i>
+                            <div>
+                                <h5 class="fw-bold">Видимость</h5>
+                                <p class="text-muted mb-0">
+                                    Мы стремимся сделать достижения женщин более видимыми
+                                    и доступными для широкой аудитории.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-start">
+                            <i class="bi bi-arrow-through-heart-fill text-success fs-2 me-3"></i>
+                            <div>
+                                <h5 class="fw-bold">Поддержка</h5>
+                                <p class="text-muted mb-0">
+                                    Создаем поддерживающее сообщество, где женщины
+                                    могут делиться опытом и находить единомышленников.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-start">
+                            <i class="bi bi-globe2 text-info fs-2 me-3"></i>
+                            <div>
+                                <h5 class="fw-bold">Разнообразие</h5>
+                                <p class="text-muted mb-0">
+                                    Представляем женщин из разных стран, культур
+                                    и профессиональных сфер.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-start">
+                            <i class="bi bi-graph-up-arrow text-warning fs-2 me-3"></i>
+                            <div>
+                                <h5 class="fw-bold">Развитие</h5>
+                                <p class="text-muted mb-0">
+                                    Постоянно расширяем нашу базу данных и улучшаем
+                                    функциональность платформы.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Призыв к действию -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h3 class="fw-bold mb-3">Присоединяйтесь к нашему сообществу!</h3>
+                <p class="mb-0">
+                    Начните исследовать истории удивительных женщин или поделитесь своей собственной историей.
+                </p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a href="{% url 'women:all_humans' %}" class="btn btn-light btn-lg">
+                        <i class="bi bi-people me-2"></i>Исследовать
+                    </a>
+                    <a href="{% url 'women:create' %}" class="btn btn-outline-light btn-lg">
+                        <i class="bi bi-plus-circle me-2"></i>Добавить
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Контакты -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8">
+                <h2 class="fw-bold mb-4">Свяжитесь с нами</h2>
+                <p class="lead text-muted mb-4">
+                    Есть вопросы или предложения? Мы всегда рады обратной связи!
+                </p>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <i class="bi bi-envelope-fill text-primary fs-4 me-3"></i>
+                            <div class="text-start">
+                                <h6 class="fw-bold mb-0">Email</h6>
+                                <p class="text-muted mb-0">hello@womensite.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <i class="bi bi-telephone-fill text-success fs-4 me-3"></i>
+                            <div class="text-start">
+                                <h6 class="fw-bold mb-0">Телефон</h6>
+                                <p class="text-muted mb-0">+7 (999) 123-45-67</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <i class="bi bi-geo-alt-fill text-warning fs-4 me-3"></i>
+                            <div class="text-start">
+                                <h6 class="fw-bold mb-0">Адрес</h6>
+                                <p class="text-muted mb-0">Москва, Россия</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
+    }
+
+    .icon-wrapper {
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover .icon-wrapper {
+        transform: scale(1.1);
+    }
+
+    .stat-item {
+        padding: 20px;
+    }
+</style>
+
+<script>
+    // Анимация счетчиков
+    function animateCounter(element, target, duration = 2000) {
+        let start = 0;
+        const increment = target / (duration / 16);
+        const timer = setInterval(() => {
+            start += increment;
+            if (start >= target) {
+                element.textContent = target;
+                clearInterval(timer);
+            } else {
+                element.textContent = Math.floor(start);
+            }
+        }, 16);
+    }
+
+    // Запускаем анимацию при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(() => {
+        animateCounter(document.getElementById('womenCount'), {{ women_count }});
+        animateCounter(document.getElementById('categoriesCount'), {{ categories_count }});
+        animateCounter(document.getElementById('storiesCount'), {{ women_count|add:43 }});
+        animateCounter(document.getElementById('visitorsCount'), {{ women_count|add:2400 }});
+    }, 500);
+});
+</script>
+{% endblock %}
